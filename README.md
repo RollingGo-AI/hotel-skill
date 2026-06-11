@@ -41,13 +41,13 @@ Official AI skills for the **RollingGo Hotel CLI** (`@rollinggo/hotel`). They te
 Works with Cursor, Claude Code, Codex, Windsurf, Copilot, Google Antigravity, and 40+ agents:
 
 ```bash
-npx skills add https://github.com/RollingGo-AI/hotel-skill --skill hotel-core
+npx skills add https://github.com/RollingGo-AI/hotel-skill
 ```
 
 The CLI auto-detects the installed agent. To target one explicitly, pass `--agent`:
 
 ```bash
-npx skills add https://github.com/RollingGo-AI/hotel-skill --skill hotel-core --agent cursor
+npx skills add https://github.com/RollingGo-AI/hotel-skill --agent cursor
 ```
 
 ### Clone / copy
@@ -110,13 +110,13 @@ rgh book --reference-no "REF9999" --first-name "San" --last-name "Zhang" --email
 自动兼容 Cursor, Claude Code, Windsurf 等 40+ 种代理：
 
 ```bash
-npx skills add https://github.com/RollingGo-AI/hotel-skill --skill hotel-core
+npx skills add https://github.com/RollingGo-AI/hotel-skill
 ```
 
 CLI 会自动检测您系统上安装的 Agent。您也可以通过 `--agent` 强制指定目标环境：
 
 ```bash
-npx skills add https://github.com/RollingGo-AI/hotel-skill --skill hotel-core --agent cursor
+npx skills add https://github.com/RollingGo-AI/hotel-skill --agent cursor
 ```
 
 ### 手动克隆/复制
