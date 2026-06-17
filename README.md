@@ -139,26 +139,6 @@ rgh book --reference-no "REF9999" --first-name "San" --last-name "Zhang" --email
 用户：我下周三要去杭州出差，帮我在西溪湿地附近找个酒店，2 人住 1 晚，要 4 星以上、有免费 WiFi
 ```
 
-Claude 自动调用 `searchHotels`：
-
-```json
-{
-  "originQuery": "杭州西溪湿地附近酒店，2人入住1晚，4星以上，免费WiFi",
-  "place": "西溪湿地",
-  "placeType": "景点",
-  "size": 5,
-  "checkInParam": {
-    "checkInDate": "2026-06-11",
-    "stayNights": 1,
-    "adultCount": 2
-  },
-  "filterOptions": { "starRatings": [4.0, 5.0] },
-  "hotelTags": { "preferredTags": ["免费WiFi"] }
-}
-```
-
-返回：
-
 ```
 Claude: 找到以下酒店：
 
@@ -179,7 +159,6 @@ Claude: 找到以下酒店：
 用户：菲住布渴看起来不错，看看有什么房型
 ```
 
-Claude 调用 `getHotelDetail`，返回：
 
 ```
 Claude: 杭州阿里巴巴园区菲住布渴酒店 房型：
@@ -201,7 +180,7 @@ Claude: 杭州阿里巴巴园区菲住布渴酒店 房型：
 用户：行政大床房吧，含早吗？
 ```
 
-Claude 从详情数据中找到餐食信息回答后，调用 `hotelPriceConfirm` 锁价：
+
 
 ```
 Claude: ✅ 价格已锁定！
@@ -227,7 +206,7 @@ Claude: ✅ 价格已锁定！
 用户：确认，入住人张三，邮箱 zhangsan@example.com
 ```
 
-Claude 调用 `createHotelBookingWithAlipayUrl`：
+
 
 ```
 Claude: ✅ 订单已创建！
@@ -248,7 +227,7 @@ Claude: ✅ 订单已创建！
 用户：我的订单
 ```
 
-Claude 调用 `searchHotelOrders`，返回：
+
 
 ```
 Claude: 你有 1 笔酒店订单：
