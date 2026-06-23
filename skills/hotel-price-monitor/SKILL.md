@@ -1,14 +1,14 @@
 ---
 name: hotel-price-monitor
 description: 酒店降价监控、酒店搜索与预订引导助手。当用户已经订了酒店、担心自己买贵了，想继续关注某家酒店后续是否会降价，想在决定前确认最新的免费取消截止时间，或者还没订酒店但希望获得酒店搜索帮助、缩小筛选范围、找出真正值得继续关注的酒店，或进一步推进酒店预订时，都应使用这个技能。它的目标，是把模糊的订酒店焦虑转化为具体、可执行的关注、筛选或预订动作。触发词包括：“我是不是订贵了”“帮我盯这家酒店”“这家酒店后面会不会更便宜”“值不值得再等等”“酒店价格提醒”“免费取消截止时间”“酒店捡漏”“帮我搜酒店”“订这家酒店”。
-homepage: https://mcp.agentichotel.cn
+homepage: https://rollinggo.store
 metadata:
   {
     "openclaw": {
       "emoji": "🔔",
       "skillKey": "hotel-price-monitor",
       "requires": {
-        "anyBins": ["rgh", "npx", "node"]
+        "anyBins": ["rgh", "npx", "node", "python", "python3", "curl", "wget"]
       },
       "install": [
         {
@@ -17,6 +17,12 @@ metadata:
           "package": "@rollinggo/hotel@latest",
           "bins": ["rgh"],
           "label": "Install @rollinggo/hotel (npm)"
+        },
+        {
+          "id": "python",
+          "kind": "exec",
+          "command": "python scripts/install.py",
+          "label": "Install rgh standalone binary (python)"
         }
       ]
     }
@@ -26,7 +32,7 @@ metadata:
 
 ## 安装
 
-如果本地环境未安装 `rgh` 命令，必须通过以下两种方式之一进行安装：
+如果本地环境未安装 `rgh` 命令，可以通过以下三种方式之一进行安装：
 
 **方式一：通过 npm 安装（推荐）**
 如果环境中有 Node.js 和 npm，请执行：
@@ -34,14 +40,20 @@ metadata:
 npm install -g @rollinggo/hotel@latest
 ```
 
-**方式二：下载独立可执行文件（免 Node 环境）**
-如果环境中没有 npm，请判断当前操作系统，并通过 `curl` 等工具从以下 Release 页面下载对应的单文件程序（Windows: `rgh-win.exe`, Mac: `rgh-macos`, Linux: `rgh-linux`）：
+**方式二：通过 Python 自动脚本安装（免 Node.js 环境）**
+如果环境中有 Python，可以直接在 Skill 目录下运行自动化安装脚本，它将自动检测您的操作系统并下载最新版的 `rgh` 独立二进制程序到本地 `bin` 文件夹：
+```bash
+python scripts/install.py
+```
+
+**方式三：手动下载独立可执行文件（免 Node/Python 环境）**
+如果环境中既没有 npm 也没有 Python，请从以下 Release 页面下载对应的单文件程序（Windows: `rgh-win.exe` / `rgh-windows.exe`, Mac: `rgh-macos`, Linux: `rgh-linux`）：
 `https://github.com/RollingGo-AI/oauth-hotel-cli/releases/latest`
 
-下载后将其重命名为 `rgh` 并赋予执行权限。
+下载后将其重命名为 `rgh`（Windows下为 `rgh.exe`），赋予执行权限，并放入系统环境变量 PATH 或技能目录的 `bin` 文件夹中。
 
 **⚠️ 自动升级拦截原则：**
-CLI 工具内置了版本检测。当你在执行任何 `rgh` 命令时，如果控制台输出中出现 `📦 有新版本可用！` 或 `运行以下命令更新` 的提示，**你必须立即暂停当前操作，先使用上述两种方式之一将工具升级到最新版，升级成功后再重新执行刚才中断的命令。** 这样可避免由于服务端接口过期而导致的预订失败。
+CLI 工具内置了版本检测。当你在执行任何 `rgh` 命令时，如果控制台输出中出现 `📦 有新版本可用！` 或 `运行以下命令更新` 的提示，**你必须立即暂停当前操作，先使用上述三种方式之一将工具升级到最新版，升级成功后再重新执行刚才中断的命令。** 这样可避免由于服务端接口过期而导致的预订失败。
 
 ## 使用场景
 
